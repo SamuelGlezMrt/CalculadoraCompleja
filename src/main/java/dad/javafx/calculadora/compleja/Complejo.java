@@ -52,13 +52,35 @@ public class Complejo {
 		return r;
 	}
 	
+	public Complejo subtrac(Complejo s) {
+		Complejo r = new Complejo();
+		r.realProperty().bind(real.subtract(s.realProperty()));
+		r.imaginarioProperty().bind(imaginario.subtract(s.imaginarioProperty()));
+		return r;
+	}
+	
+	public Complejo multiply(Complejo m) {
+		Complejo r = new Complejo();
+		r.realProperty().bind(real.multiply(m.realProperty()));
+		r.imaginarioProperty().bind(imaginario.multiply(m.imaginarioProperty()));
+ 
+		return r;
+	}
+	
 	public static void main(String[] args) {
 		Complejo a = new Complejo(1, 2);
 		Complejo b = new Complejo(3, 4);
 		Complejo c = a.add(b);
-		System.out.println(c);
-		a.setReal(10);
-		System.out.println(c);		
+		Complejo s = a.subtrac(b);
+		Complejo m = a.multiply(b);
+		 
+		//System.out.println(c);
+		//a.setReal(10);
+		//System.out.println(c);	
+		//System.out.println();
+		//System.out.println(s);
+		//System.out.println();
+		System.out.println(m);
 	}
 
 }
