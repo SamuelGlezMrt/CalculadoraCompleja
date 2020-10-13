@@ -43,7 +43,8 @@ public class CalculadoraCompleja extends Application {
 		tfNumeradorB.setAlignment(Pos.CENTER);
 		
 		HBox  hbnumeradores = new HBOx();
-		
+		hbnumeradores.setSpacing(5);
+		hbnumeradores.getChildren().addAll(tfNumeradorA, new label("+"), tfDenominadorB, new label("i"));
 		
 	}
 
