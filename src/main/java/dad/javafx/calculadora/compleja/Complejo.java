@@ -52,7 +52,7 @@ public class Complejo {
 		return r;
 	}
 	
-	public Complejo subtrac(Complejo s) {
+	public Complejo substract(Complejo s) {
 		Complejo r = new Complejo();
 		r.realProperty().bind(real.subtract(s.realProperty()));
 		r.imaginarioProperty().bind(imaginario.subtract(s.imaginarioProperty()));
@@ -71,14 +71,14 @@ public class Complejo {
 		Complejo a = new Complejo(1, 2);
 		Complejo b = new Complejo(3, 4);
 		Complejo c = a.add(b);
-		Complejo s = a.subtrac(b);
+		Complejo s = a.substract(b);
 		Complejo m = a.multiply(b);
 		 
 		//System.out.println(c);
 		//a.setReal(10);
-		//System.out.println(c);	
+		System.out.println(c);	
 		//System.out.println();
-		//System.out.println(s);
+		System.out.println(s);
 		//System.out.println();
 		System.out.println(m);
 	}
