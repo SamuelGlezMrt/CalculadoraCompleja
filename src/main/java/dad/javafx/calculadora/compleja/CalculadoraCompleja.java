@@ -2,6 +2,7 @@ package dad.javafx.calculadora.compleja;
 
 import javafx.application.Application;
 import javafx.beans.binding.Bindings;
+import javafx.event.ActionEvent;
 import javafx.stage.Stage;
 import javafx.util.converter.NumberStringConverter;
 import javafx.geometry.Pos;
@@ -30,6 +31,28 @@ public class CalculadoraCompleja extends Application {
 	private Complejo complejoB;
 	private Complejo resultado;
 
+//	private void onCambiarAction(ActionEvent e) {
+//		String operacion = cbOperadores.getSelectionModel().getSelectedItem();
+//		Complejo aux = new Complejo();
+//
+//		switch (operacion) {
+//		case "+":
+//			aux = complejoA.add(complejoB);
+//			break;
+//		case "-":
+//			aux = complejoA.substract(complejoB);
+//			break;
+//		case "*":
+//			aux = complejoA.multiply(complejoB);
+//			break;
+////		case "/":
+////			aux = complejoA.divide(complejoB);
+////			break;
+//		}
+//		resultado.setReal(aux.getReal());
+//		resultado.setImaginario(aux.getImaginario());
+//	}
+
 	public void start(Stage primaryStage) throws Exception {
 
 		/* Operadores */
@@ -37,7 +60,7 @@ public class CalculadoraCompleja extends Application {
 		cbOperadores = new ComboBox<String>();
 		cbOperadores.getItems().addAll(operadores);
 		cbOperadores.getSelectionModel().selectFirst();
-		// cbOperadores.setOnAction(e -> onCambiarAction(e));
+		//cbOperadores.setOnAction(e -> onCambiarAction(e));
 
 		VBox vbOperacion = new VBox();
 		vbOperacion.getChildren().add(cbOperadores);
