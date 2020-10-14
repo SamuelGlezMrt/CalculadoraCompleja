@@ -1,13 +1,11 @@
 package dad.javafx.calculadora.compleja;
 
-import java.awt.event.ActionEvent;
-
 import javafx.application.Application;
 import javafx.beans.binding.Bindings;
 import javafx.stage.Stage;
 import javafx.util.converter.NumberStringConverter;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
+
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -35,13 +33,15 @@ public class CalculadoraCompleja extends Application {
 	public void start(Stage primaryStage) throws Exception {
 
 		/* Operadores */
+
 		cbOperadores = new ComboBox<String>();
 		cbOperadores.getItems().addAll(operadores);
 		cbOperadores.getSelectionModel().selectFirst();
+		// cbOperadores.setOnAction(e -> onCambiarAction(e));
 
-		VBox vbOperaciones = new VBox();
-		vbOperaciones.getChildren().add(cbOperadores);
-		vbOperaciones.setAlignment(Pos.CENTER);
+		VBox vbOperacion = new VBox();
+		vbOperacion.getChildren().add(cbOperadores);
+		vbOperacion.setAlignment(Pos.CENTER);
 
 		/* 1 numero */
 		tfNumeradorA = new TextField("0");
@@ -54,11 +54,9 @@ public class CalculadoraCompleja extends Application {
 		tfNumeradorB.setMaxWidth(100);
 		tfNumeradorB.setAlignment(Pos.CENTER);
 
-		HBox hbNumeradores = new HBox();
-		hbNumeradores.setSpacing(5);
-		hbNumeradores.getChildren().addAll(tfNumeradorA, new Label("+"), tfNumeradorB, new Label("i"));
-
-		/* Bindings para el primer numero */
+		HBox hbNumerador = new HBox();
+		hbNumerador.setSpacing(5);
+		hbNumerador.getChildren().addAll(tfNumeradorA, new Label("+"), tfNumeradorB, new Label("i"));
 
 		complejoA = new Complejo();
 
@@ -67,21 +65,21 @@ public class CalculadoraCompleja extends Application {
 				new NumberStringConverter());
 
 		/* 2 numero */
-		tfNumeradorA = new TextField("0");
-		tfNumeradorA.setPrefColumnCount(4);
-		tfNumeradorA.setMaxWidth(100);
-		tfNumeradorA.setAlignment(Pos.CENTER);
 
-		tfNumeradorB = new TextField("0");
-		tfNumeradorB.setPrefColumnCount(4);
-		tfNumeradorB.setMaxWidth(100);
-		tfNumeradorB.setAlignment(Pos.CENTER);
+		tfDenominadorA = new TextField("0");
+		tfDenominadorA.setPrefColumnCount(4);
+		tfDenominadorA.setMaxWidth(100);
+		tfDenominadorA.setAlignment(Pos.CENTER);
+
+		tfDenominadorB = new TextField("0");
+		tfDenominadorB.setPrefColumnCount(4);
+		tfDenominadorB.setMaxWidth(100);
+		tfDenominadorB.setAlignment(Pos.CENTER);
 
 		HBox hbDenominador = new HBox();
 		hbDenominador.setSpacing(5);
 		hbDenominador.getChildren().addAll(tfDenominadorA, new Label("+"), tfDenominadorB, new Label("i"));
 
-		/* Bindings para el segundo numero */
 		complejoB = new Complejo();
 
 		Bindings.bindBidirectional(tfDenominadorA.textProperty(), complejoB.realProperty(),
@@ -89,7 +87,7 @@ public class CalculadoraCompleja extends Application {
 		Bindings.bindBidirectional(tfDenominadorB.textProperty(), complejoB.imaginarioProperty(),
 				new NumberStringConverter());
 
-		/* Resultado */
+		// Resultado
 
 		tfResA = new TextField("0");
 		tfResA.setPrefColumnCount(4);
@@ -103,7 +101,6 @@ public class CalculadoraCompleja extends Application {
 		tfResB.setAlignment(Pos.CENTER);
 		tfResB.setDisable(true);
 
-		/* Bindings para el resultado */
 		resultado = new Complejo();
 
 		Bindings.bindBidirectional(tfResA.textProperty(), resultado.realProperty(), new NumberStringConverter());
@@ -115,22 +112,20 @@ public class CalculadoraCompleja extends Application {
 
 		VBox vbNumeros = new VBox();
 		vbNumeros.setAlignment(Pos.CENTER);
-		vbNumeros.getChildren().addAll(hbNumeradores, hbDenominador, new Separator(), hbResultado);
+		vbNumeros.getChildren().addAll(hbNumerador, hbDenominador, new Separator(), hbResultado);
 
 		// Elemento Raiz
 
-		HBox hbPrincipal = new HBox();
-		hbPrincipal.setSpacing(5);
-		hbPrincipal.setAlignment(Pos.CENTER);
-		;
-		hbPrincipal.getChildren().addAll(vbOperaciones, vbNumeros);
+		HBox root = new HBox();
+		root.setSpacing(5);
+		root.setAlignment(Pos.CENTER);
+		root.getChildren().addAll(vbOperacion, vbNumeros);
 
-		Scene escena = new Scene(hbPrincipal, 320, 200);
+		Scene escena = new Scene(root, 320, 200);
 
 		primaryStage.setScene(escena);
 		primaryStage.setTitle("CalculadoraCompleja");
 		primaryStage.show();
-
 	}
 
 	public static void main(String[] args) {
