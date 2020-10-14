@@ -1,5 +1,7 @@
 package dad.javafx.calculadora.compleja;
 
+import java.awt.event.ActionEvent;
+
 import javafx.application.Application;
 import javafx.beans.binding.Bindings;
 import javafx.stage.Stage;
@@ -31,8 +33,8 @@ public class CalculadoraCompleja extends Application {
 	private Complejo resultado;
 
 	public void start(Stage primaryStage) throws Exception {
-		
-		/*Operadores*/
+
+		/* Operadores */
 		cbOperadores = new ComboBox<String>();
 		cbOperadores.getItems().addAll(operadores);
 		cbOperadores.getSelectionModel().selectFirst();
@@ -41,8 +43,7 @@ public class CalculadoraCompleja extends Application {
 		vbOperaciones.getChildren().add(cbOperadores);
 		vbOperaciones.setAlignment(Pos.CENTER);
 
-		
-		/*1 numero*/
+		/* 1 numero */
 		tfNumeradorA = new TextField("0");
 		tfNumeradorA.setPrefColumnCount(4);
 		tfNumeradorA.setMaxWidth(100);
@@ -64,8 +65,8 @@ public class CalculadoraCompleja extends Application {
 		Bindings.bindBidirectional(tfNumeradorA.textProperty(), complejoA.realProperty(), new NumberStringConverter());
 		Bindings.bindBidirectional(tfNumeradorB.textProperty(), complejoA.imaginarioProperty(),
 				new NumberStringConverter());
-		
-		/*2 numero*/
+
+		/* 2 numero */
 		tfNumeradorA = new TextField("0");
 		tfNumeradorA.setPrefColumnCount(4);
 		tfNumeradorA.setMaxWidth(100);
@@ -88,7 +89,7 @@ public class CalculadoraCompleja extends Application {
 		Bindings.bindBidirectional(tfDenominadorB.textProperty(), complejoB.imaginarioProperty(),
 				new NumberStringConverter());
 
-		/*Resultado*/
+		/* Resultado */
 
 		tfResA = new TextField("0");
 		tfResA.setPrefColumnCount(4);
@@ -102,12 +103,11 @@ public class CalculadoraCompleja extends Application {
 		tfResB.setAlignment(Pos.CENTER);
 		tfResB.setDisable(true);
 
-		/*Bindings para el resultado*/
+		/* Bindings para el resultado */
 		resultado = new Complejo();
 
 		Bindings.bindBidirectional(tfResA.textProperty(), resultado.realProperty(), new NumberStringConverter());
-		Bindings.bindBidirectional(tfResB.textProperty(), resultado.imaginarioProperty(),
-				new NumberStringConverter());
+		Bindings.bindBidirectional(tfResB.textProperty(), resultado.imaginarioProperty(), new NumberStringConverter());
 
 		HBox hbResultado = new HBox();
 		hbResultado.setSpacing(5);
