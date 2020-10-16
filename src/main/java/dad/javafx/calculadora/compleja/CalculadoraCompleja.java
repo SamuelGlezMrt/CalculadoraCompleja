@@ -25,33 +25,30 @@ public class CalculadoraCompleja extends Application {
 	private TextField tfResA;
 	private TextField tfResB;
 
-	private String[] operadores = { "+", "-", "*", "/" };
+	private String[] operadores = { "+", "-", "*"};
 
 	private Complejo complejoA;
 	private Complejo complejoB;
 	private Complejo resultado;
 
-//	private void onCambiarAction(ActionEvent e) {
-//		String operacion = cbOperadores.getSelectionModel().getSelectedItem();
-//		Complejo aux = new Complejo();
-//
-//		switch (operacion) {
-//		case "+":
-//			aux = complejoA.add(complejoB);
-//			break;
-//		case "-":
-//			aux = complejoA.substract(complejoB);
-//			break;
-//		case "*":
-//			aux = complejoA.multiply(complejoB);
-//			break;
-////		case "/":
-////			aux = complejoA.divide(complejoB);
-////			break;
-//		}
-//		resultado.setReal(aux.getReal());
-//		resultado.setImaginario(aux.getImaginario());
-//	}
+	private void onCambiarOperadores(ActionEvent e) {
+		String operacion = cbOperadores.getSelectionModel().getSelectedItem();
+		Complejo aux = new Complejo();
+
+		switch (operacion) {
+		case "+":
+			aux = complejoA.add(complejoB);
+			break;
+		case "-":
+			aux = complejoA.substract(complejoB);
+			break;
+		case "*":
+			aux = complejoA.multiply(complejoB);
+			break;
+		}
+		resultado.setReal(aux.getReal());
+		resultado.setImaginario(aux.getImaginario());
+	}
 
 	public void start(Stage primaryStage) throws Exception {
 
@@ -60,7 +57,7 @@ public class CalculadoraCompleja extends Application {
 		cbOperadores = new ComboBox<String>();
 		cbOperadores.getItems().addAll(operadores);
 		cbOperadores.getSelectionModel().selectFirst();
-		//cbOperadores.setOnAction(e -> onCambiarAction(e));
+		cbOperadores.setOnAction(e -> onCambiarOperadores(e));
 
 		VBox vbOperacion = new VBox();
 		vbOperacion.getChildren().add(cbOperadores);
