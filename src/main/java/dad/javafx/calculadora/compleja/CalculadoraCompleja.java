@@ -25,7 +25,7 @@ public class CalculadoraCompleja extends Application {
 	private TextField tfResA;
 	private TextField tfResB;
 
-	private String[] operadores = { "+", "-", "*"};
+	private String[] operadores = { "+", "-", "*" };
 
 	private Complejo complejoA;
 	private Complejo complejoB;
@@ -33,21 +33,23 @@ public class CalculadoraCompleja extends Application {
 
 	private void onCambiarOperadores(ActionEvent e) {
 		String operacion = cbOperadores.getSelectionModel().getSelectedItem();
-		Complejo aux = new Complejo();
-
 		switch (operacion) {
 		case "+":
-			aux = complejoA.add(complejoB);
+			resultado.realProperty().bind(complejoA.realProperty().add(complejoB.realProperty()));
+			resultado.imaginarioProperty().bind(complejoA.imaginarioProperty().add(complejoB.imaginarioProperty()));
 			break;
 		case "-":
-			aux = complejoA.substract(complejoB);
+			resultado.realProperty().bind(complejoA.realProperty().subtract(complejoB.realProperty()));
+			resultado.imaginarioProperty()
+					.bind(complejoA.imaginarioProperty().subtract(complejoB.imaginarioProperty()));
 			break;
 		case "*":
-			aux = complejoA.multiply(complejoB);
+			resultado.realProperty().bind(complejoA.realProperty().multiply(complejoB.realProperty())
+					.subtract(complejoA.imaginarioProperty().multiply(complejoB.imaginarioProperty())));
+			resultado.imaginarioProperty().bind(complejoA.realProperty().multiply(complejoB.imaginarioProperty())
+					.add(complejoA.imaginarioProperty().multiply(complejoB.realProperty())));
 			break;
 		}
-		resultado.setReal(aux.getReal());
-		resultado.setImaginario(aux.getImaginario());
 	}
 
 	public void start(Stage primaryStage) throws Exception {
