@@ -31,7 +31,7 @@ public class CalculadoraCompleja extends Application {
 	private Complejo complejoB;
 	private Complejo resultado;
 
-	private void onCambiarOperadores(ActionEvent e) {
+	private void onOperadoresAction(ActionEvent e) {
 		String operacion = cbOperadores.getSelectionModel().getSelectedItem();
 		switch (operacion) {
 		case "+":
@@ -59,7 +59,7 @@ public class CalculadoraCompleja extends Application {
 		cbOperadores = new ComboBox<String>();
 		cbOperadores.getItems().addAll(operadores);
 		cbOperadores.getSelectionModel().selectFirst();
-		cbOperadores.setOnAction(e -> onCambiarOperadores(e));
+		cbOperadores.setOnAction(e -> onOperadoresAction(e));
 
 		VBox vbOperacion = new VBox();
 		vbOperacion.getChildren().add(cbOperadores);
