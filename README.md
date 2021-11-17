@@ -1,2 +1,2 @@
 # CalculadoraCompleja
- Eejrcicio Calculadora Compleja 
+ Ejercicio Calculadora Compleja 
